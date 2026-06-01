@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verdant Clean — Professional Cleaning Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --g900: #0d1f0d;
+    --g800: #1a3d1a;
+    --g700: #245924;
+    --g600: #2e7d32;
+    --g500: #388e3c;
+    --g400: #4caf50;
+    --g300: #81c784;
+    --g200: #c8e6c9;
+    --g100: #e8f5e9;
+    --g50:  #f1f8f1;
+    --ink:  #111410;
+    --ink2: #3a3d38;
+    --ink3: #7a7d76;
+    --ink4: #b8bab4;
+    --paper: #fafaf8;
+    --white: #ffffff;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans:  'Outfit', sans-serif;
+    --radius: 4px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.07);
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); overflow-x: hidden; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--g50); }
+  ::-webkit-scrollbar-thumb { background: var(--g300); border-radius: 3px; }
+
+  /* ── KEYFRAMES ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes lineGrow { from { width: 0; } to { width: 48px; } }
+  @keyframes countUp { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+  @keyframes slideRight { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+
+  .animate { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .animate.visible { opacity: 1; transform: translateY(0); }
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+  .delay-5 { transition-delay: 0.5s; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(250,250,248,0.92); backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 0 48px; height: 68px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: var(--shadow); }
+  .logo { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--g700); letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon { width: 36px; height: 36px; background: var(--g700); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .logo-icon i { color: #fff; font-size: 20px; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--ink2); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background: var(--g600); transition: width 0.25s; }
+  .nav-links a:hover { color: var(--g700); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-right { display: flex; gap: 12px; align-items: center; }
+  .nav-phone { font-size: 14px; color: var(--ink2); font-weight: 500; display: flex; align-items: center; gap: 6px; }
+  .nav-phone i { color: var(--g600); }
+  .btn { font-family: var(--sans); cursor: pointer; transition: all 0.2s; border: none; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary { background: var(--g700); color: #fff; padding: 11px 24px; border-radius: var(--radius-lg); font-size: 14px; }
+  .btn-primary:hover { background: var(--g800); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(46,125,50,0.3); }
+  .btn-secondary { background: transparent; color: var(--g700); padding: 11px 24px; border-radius: var(--radius-lg); font-size: 14px; border: 1.5px solid var(--g300); }
+  .btn-secondary:hover { background: var(--g100); border-color: var(--g600); }
+  .btn-large { padding: 15px 36px; font-size: 16px; border-radius: var(--radius-lg); }
+  .btn-white { background: #fff; color: var(--g800); }
+  .btn-white:hover { background: var(--g100); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+  .btn-outline-white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); padding: 15px 32px; border-radius: var(--radius-lg); font-size: 15px; }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.8); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; padding: 120px 48px 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    position: relative; overflow: hidden;
+    background: var(--paper);
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, var(--g100) 0%, transparent 70%);
+    z-index: 0;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -80px; left: 40%;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,230,201,0.3) 0%, transparent 70%);
+    z-index: 0;
+  }
+  .hero-text { position: relative; z-index: 1; animation: fadeUp 0.9s ease forwards; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; background: var(--g100); color: var(--g700); font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 20px; margin-bottom: 28px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .hero-eyebrow i { font-size: 16px; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(44px, 5.5vw, 72px); line-height: 1.1; font-weight: 300; color: var(--ink); margin-bottom: 24px; letter-spacing: -0.02em; }
+  .hero h1 em { font-style: italic; color: var(--g700); }
+  .hero-desc { font-size: 17px; color: var(--ink2); line-height: 1.75; margin-bottom: 36px; font-weight: 300; max-width: 480px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+  .hero-trust { display: flex; gap: 28px; }
+  .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink3); font-weight: 500; }
+  .trust-item i { color: var(--g500); font-size: 17px; }
+  .hero-visual { position: relative; z-index: 1; animation: fadeIn 1.1s ease forwards; }
+  .hero-card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .hero-card { background: var(--white); border: 1px solid rgba(0,0,0,0.07); border-radius: var(--radius-xl); padding: 24px; transition: all 0.3s; }
+  .hero-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .hero-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .hero-card-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--g100); display: flex; align-items: center; justify-content: center; }
+  .hero-card-icon i { font-size: 22px; color: var(--g700); }
+  .hero-card h4 { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .hero-card p { font-size: 13px; color: var(--ink3); line-height: 1.6; }
+  .hero-card.featured { background: var(--g800); color: #fff; grid-column: span 2; display: flex; align-items: center; justify-content: space-between; }
+  .hero-card.featured h4 { color: #fff; font-size: 17px; }
+  .hero-card.featured p { color: rgba(255,255,255,0.7); font-size: 14px; }
+  .hero-card.featured .hero-card-icon { background: rgba(255,255,255,0.15); }
+  .hero-card.featured .hero-card-icon i { color: var(--g300); }
+  .rating-badge { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 10px; flex-shrink: 0; }
+  .rating-badge .stars { color: #ffd54f; font-size: 14px; }
+  .rating-badge .num { color: #fff; font-size: 20px; font-weight: 700; font-family: var(--serif); }
+  .rating-badge .label { color: rgba(255,255,255,0.6); font-size: 12px; }
+
+  /* ── STATS BANNER ── */
+  .stats-banner { background: var(--g800); padding: 48px; display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+  .stat-item { text-align: center; padding: 0 24px; border-right: 1px solid rgba(255,255,255,0.1); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: var(--serif); font-size: 52px; font-weight: 300; color: #fff; line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 100px 48px; }
+  .section-header { margin-bottom: 64px; }
+  .section-tag { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g600); margin-bottom: 16px; }
+  .section-tag::before { content: '—— '; }
+  .section-title { font-family: var(--serif); font-size: clamp(32px, 4vw, 48px); font-weight: 300; color: var(--ink); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 18px; }
+  .section-title strong { font-weight: 600; }
+  .section-sub { font-size: 16px; color: var(--ink2); line-height: 1.75; max-width: 540px; font-weight: 300; }
+  .section-header.centered { text-align: center; }
+  .section-header.centered .section-sub { margin: 0 auto; }
+
+  /* ── SERVICES ── */
+  .services { background: var(--white); }
+  .services-layout { display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; }
+  .services-list { display: flex; flex-direction: column; gap: 2px; margin-top: 48px; }
+  .service-tab { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-radius: var(--radius-lg); cursor: pointer; transition: all 0.25s; border: 1px solid transparent; }
+  .service-tab:hover { background: var(--g50); }
+  .service-tab.active { background: var(--g800); border-color: var(--g800); }
+  .service-tab-left { display: flex; align-items: center; gap: 14px; }
+  .service-tab-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--g100); display: flex; align-items: center; justify-content: center; transition: background 0.25s; }
+  .service-tab.active .service-tab-icon { background: rgba(255,255,255,0.15); }
+  .service-tab-icon i { font-size: 20px; color: var(--g700); transition: color 0.25s; }
+  .service-tab.active .service-tab-icon i { color: var(--g200); }
+  .service-tab-name { font-size: 15px; font-weight: 500; color: var(--ink); transition: color 0.25s; }
+  .service-tab.active .service-tab-name { color: #fff; }
+  .service-tab-arrow { font-size: 16px; color: var(--ink4); transition: color 0.25s; }
+  .service-tab.active .service-tab-arrow { color: rgba(255,255,255,0.5); }
+  .service-detail { display: none; }
+  .service-detail.active { display: block; animation: fadeUp 0.4s ease; }
+  .service-detail-img { width: 100%; height: 320px; border-radius: var(--radius-xl); background: var(--g100); display: flex; align-items: center; justify-content: center; margin-bottom: 32px; overflow: hidden; position: relative; }
+  .service-detail-img .big-icon { font-size: 96px; color: var(--g300); opacity: 0.5; }
+  .service-detail-img .detail-badge { position: absolute; bottom: 20px; left: 20px; background: var(--g800); color: #fff; padding: 8px 18px; border-radius: 20px; font-size: 14px; font-weight: 500; }
+  .service-checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 24px 0 32px; }
+  .service-checklist li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--ink2); }
+  .service-checklist li i { color: var(--g600); font-size: 18px; margin-top: 1px; flex-shrink: 0; }
+  .service-price-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--g50); border-radius: var(--radius-lg); }
+  .service-price { font-family: var(--serif); font-size: 36px; font-weight: 600; color: var(--g700); }
+  .service-price span { font-size: 16px; font-weight: 300; color: var(--ink3); }
+
+  /* ── BEFORE AFTER ── */
+  .before-after { background: var(--paper); }
+  .ba-rooms { display: flex; gap: 10px; margin-bottom: 36px; flex-wrap: wrap; }
+  .ba-room-btn { padding: 8px 20px; border-radius: 20px; border: 1.5px solid var(--g200); background: #fff; font-size: 14px; font-weight: 500; cursor: pointer; font-family: var(--sans); color: var(--ink2); transition: all 0.2s; }
+  .ba-room-btn.active { background: var(--g700); color: #fff; border-color: var(--g700); }
+  .ba-container { position: relative; width: 100%; max-width: 920px; height: 460px; border-radius: var(--radius-xl); overflow: hidden; cursor: ew-resize; user-select: none; box-shadow: var(--shadow-lg); }
+  .ba-side { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 14px; }
+  .ba-before-side { background: linear-gradient(135deg, #e0ddd8 0%, #ccc9c2 100%); }
+  .ba-after-side { background: linear-gradient(135deg, #d0e8d4 0%, #a8d4b0 100%); }
+  .ba-clip-layer { position: absolute; top: 0; left: 0; height: 100%; overflow: hidden; }
+  .ba-side-label { position: absolute; top: 20px; font-size: 13px; font-weight: 600; padding: 5px 14px; border-radius: 14px; }
+  .ba-before-label { left: 20px; background: rgba(0,0,0,0.25); color: #fff; }
+  .ba-after-label { right: 20px; background: rgba(26,61,26,0.75); color: #fff; }
+  .ba-divider { position: absolute; top: 0; height: 100%; width: 2px; background: #fff; transform: translateX(-50%); z-index: 10; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
+  .ba-knob { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 50%; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; }
+  .ba-knob i { font-size: 20px; color: var(--g700); }
+  .ba-room-title { font-family: var(--serif); font-size: 28px; font-weight: 300; color: rgba(0,0,0,0.35); }
+  .ba-room-desc { font-size: 13px; color: rgba(0,0,0,0.4); text-align: center; line-height: 1.6; padding: 0 32px; }
+  .ba-after-side .ba-room-title { color: rgba(26,61,26,0.5); }
+  .ba-after-side .ba-room-desc { color: rgba(26,61,26,0.55); }
+
+  /* ── PROCESS ── */
+  .process { background: var(--g900); color: #fff; }
+  .process .section-tag { color: var(--g300); }
+  .process .section-title { color: #fff; }
+  .process .section-sub { color: rgba(255,255,255,0.6); }
+  .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: var(--radius-xl); overflow: hidden; margin-top: 64px; }
+  .process-step { background: var(--g900); padding: 48px 32px; position: relative; transition: background 0.3s; }
+  .process-step:hover { background: var(--g800); }
+  .process-step-num { font-family: var(--serif); font-size: 72px; font-weight: 300; color: rgba(255,255,255,0.06); line-height: 1; margin-bottom: -16px; }
+  .process-step-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--g700); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .process-step-icon i { font-size: 24px; color: var(--g200); }
+  .process-step h3 { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 12px; }
+  .process-step p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+  .process-connector { position: absolute; top: 44px; right: -14px; width: 28px; height: 28px; background: var(--g700); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1; }
+  .process-connector i { font-size: 14px; color: #fff; }
+
+  /* ── WHY US ── */
+  .why-us { background: var(--white); }
+  .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .why-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .why-card { border-radius: var(--radius-xl); padding: 32px 28px; transition: transform 0.3s; }
+  .why-card:hover { transform: translateY(-6px); }
+  .why-card.green { background: var(--g800); }
+  .why-card.light { background: var(--g50); border: 1px solid var(--g200); }
+  .why-card.white { background: #fff; border: 1px solid rgba(0,0,0,0.07); box-shadow: var(--shadow); }
+  .why-card.dark { background: var(--ink); }
+  .why-card i { font-size: 32px; margin-bottom: 16px; display: block; }
+  .why-card.green i, .why-card.dark i { color: var(--g300); }
+  .why-card.light i, .why-card.white i { color: var(--g600); }
+  .why-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .why-card.green h4, .why-card.dark h4 { color: #fff; }
+  .why-card.light h4, .why-card.white h4 { color: var(--ink); }
+  .why-card p { font-size: 13px; line-height: 1.65; }
+  .why-card.green p, .why-card.dark p { color: rgba(255,255,255,0.6); }
+  .why-card.light p, .why-card.white p { color: var(--ink3); }
+  .why-list { list-style: none; margin-top: 36px; display: flex; flex-direction: column; gap: 16px; }
+  .why-list-item { display: flex; gap: 16px; align-items: flex-start; }
+  .why-list-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--g100); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .why-list-icon i { font-size: 20px; color: var(--g700); }
+  .why-list-text h5 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .why-list-text p { font-size: 13px; color: var(--ink3); line-height: 1.6; }
+
+  /* ── PRICING ── */
+  .pricing { background: var(--paper); }
+  .pricing-toggle { display: flex; align-items: center; gap: 16px; margin: 0 auto 56px; width: fit-content; background: var(--white); border: 1px solid rgba(0,0,0,0.08); border-radius: 40px; padding: 6px; }
+  .toggle-opt { padding: 9px 24px; border-radius: 30px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.25s; font-family: var(--sans); border: none; background: transparent; color: var(--ink3); }
+  .toggle-opt.active { background: var(--g700); color: #fff; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pricing-card { background: var(--white); border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-xl); padding: 40px; position: relative; transition: all 0.3s; }
+  .pricing-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+  .pricing-card.popular { border-color: var(--g600); border-width: 2px; }
+  .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--g700); color: #fff; font-size: 12px; font-weight: 600; padding: 5px 18px; border-radius: 12px; white-space: nowrap; letter-spacing: 0.05em; }
+  .plan-name { font-size: 13px; font-weight: 600; color: var(--g600); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .plan-desc { font-size: 14px; color: var(--ink3); margin-bottom: 28px; line-height: 1.6; }
+  .plan-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 28px; }
+  .plan-price .amount { font-family: var(--serif); font-size: 52px; font-weight: 600; color: var(--ink); line-height: 1; }
+  .plan-price .currency { font-size: 22px; color: var(--ink2); align-self: flex-start; margin-top: 8px; }
+  .plan-price .per { font-size: 14px; color: var(--ink3); }
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+  .plan-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ink2); }
+  .plan-features li i { font-size: 17px; color: var(--g500); flex-shrink: 0; }
+  .plan-features li.off { color: var(--ink4); }
+  .plan-features li.off i { color: var(--ink4); }
+
+  /* ── REVIEWS ── */
+  .reviews { background: var(--white); }
+  .reviews-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px; }
+  .rating-summary { display: flex; align-items: center; gap: 24px; }
+  .big-rating { font-family: var(--serif); font-size: 80px; font-weight: 300; color: var(--g700); line-height: 1; }
+  .rating-details .stars-row { color: #f9a825; font-size: 22px; letter-spacing: 2px; margin-bottom: 4px; }
+  .rating-details p { font-size: 14px; color: var(--ink3); }
+  .rating-bars { display: flex; flex-direction: column; gap: 6px; }
+  .rating-bar-row { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--ink3); }
+  .rating-bar-row .bar-track { width: 120px; height: 6px; background: var(--g100); border-radius: 3px; overflow: hidden; }
+  .rating-bar-row .bar-fill { height: 100%; background: var(--g500); border-radius: 3px; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .review-card { background: var(--paper); border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius-xl); padding: 28px; transition: all 0.3s; }
+  .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .review-stars { color: #f9a825; font-size: 15px; margin-bottom: 14px; }
+  .review-text { font-size: 15px; color: var(--ink2); line-height: 1.75; font-style: italic; margin-bottom: 20px; font-weight: 300; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--g200); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: var(--g800); font-family: var(--serif); flex-shrink: 0; }
+  .review-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .review-meta { font-size: 12px; color: var(--ink3); margin-top: 2px; }
+  .review-verified { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--g600); font-weight: 600; margin-top: 3px; }
+  .review-verified i { font-size: 13px; }
+
+  /* ── GALLERY ── */
+  .gallery { background: var(--paper); padding: 80px 48px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: auto auto; gap: 16px; margin-top: 48px; }
+  .gallery-item { border-radius: var(--radius-xl); overflow: hidden; background: var(--g100); display: flex; align-items: center; justify-content: center; position: relative; transition: transform 0.3s; cursor: pointer; }
+  .gallery-item:hover { transform: scale(0.98); }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-item.tall { grid-row: span 2; }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-inner { width: 100%; height: 100%; min-height: 180px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; padding: 24px; }
+  .gallery-item:nth-child(1) { background: linear-gradient(135deg, #c8e6c9, #a5d6a7); }
+  .gallery-item:nth-child(2) { background: linear-gradient(135deg, #ddd, #ccc); min-height: 200px; }
+  .gallery-item:nth-child(3) { background: linear-gradient(135deg, #b2dfdb, #80cbc4); }
+  .gallery-item:nth-child(4) { background: linear-gradient(135deg, #f0f4c3, #dce775); }
+  .gallery-item:nth-child(5) { background: linear-gradient(135deg, #e1f5fe, #b3e5fc); }
+  .gallery-item:nth-child(6) { background: linear-gradient(135deg, #fce4ec, #f8bbd0); }
+  .gallery-room-icon { font-size: 52px; color: rgba(0,0,0,0.2); }
+  .gallery-room-label { font-size: 14px; font-weight: 500; color: rgba(0,0,0,0.4); }
+  .gallery-overlay { position: absolute; inset: 0; background: rgba(26,61,26,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+  .gallery-overlay span { color: #fff; font-size: 14px; font-weight: 500; }
+
+  /* ── FAQ ── */
+  .faq { background: var(--white); }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 64px; }
+  .faq-item { border-bottom: 1px solid rgba(0,0,0,0.07); padding-bottom: 24px; margin-bottom: 4px; }
+  .faq-question { display: flex; justify-content: space-between; align-items: flex-start; cursor: pointer; gap: 16px; }
+  .faq-question h4 { font-size: 16px; font-weight: 500; color: var(--ink); line-height: 1.5; }
+  .faq-toggle { width: 28px; height: 28px; border-radius: 50%; background: var(--g50); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; flex-shrink: 0; font-family: var(--sans); }
+  .faq-toggle i { font-size: 16px; color: var(--g700); transition: transform 0.3s; }
+  .faq-item.open .faq-toggle { background: var(--g700); }
+  .faq-item.open .faq-toggle i { color: #fff; transform: rotate(45deg); }
+  .faq-answer { font-size: 14px; color: var(--ink3); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; padding-top: 0; }
+  .faq-item.open .faq-answer { max-height: 200px; padding-top: 14px; }
+
+  /* ── BOOKING ── */
+  .booking { background: var(--g800); color: #fff; }
+  .booking-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+  .booking-info .section-tag { color: var(--g300); }
+  .booking-info .section-title { color: #fff; }
+  .booking-info .section-sub { color: rgba(255,255,255,0.65); }
+  .booking-perks { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+  .booking-perk { display: flex; align-items: center; gap: 14px; }
+  .perk-icon { width: 42px; height: 42px; border-radius: 10px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .perk-icon i { font-size: 20px; color: var(--g300); }
+  .perk-text h5 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+  .perk-text p { font-size: 13px; color: rgba(255,255,255,0.55); }
+  .booking-form-card { background: #fff; border-radius: var(--radius-xl); padding: 40px; }
+  .booking-form-card h3 { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--ink); margin-bottom: 28px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+  .form-group.full { grid-column: span 2; }
+  .form-group label { font-size: 13px; font-weight: 500; color: var(--ink2); }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 11px 14px; border: 1.5px solid rgba(0,0,0,0.1);
+    border-radius: var(--radius-lg); font-family: var(--sans); font-size: 14px; color: var(--ink);
+    background: var(--paper); outline: none; transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--g600); background: #fff; }
+  .form-group textarea { resize: none; height: 90px; }
+  .form-submit { width: 100%; background: var(--g700); color: #fff; border: none; padding: 15px; border-radius: var(--radius-lg); font-size: 15px; font-weight: 600; cursor: pointer; font-family: var(--sans); display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s; margin-top: 8px; }
+  .form-submit:hover { background: var(--g800); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+  .form-success { display: none; text-align: center; padding: 40px 20px; }
+  .form-success i { font-size: 56px; color: var(--g600); margin-bottom: 16px; }
+  .form-success h4 { font-family: var(--serif); font-size: 26px; color: var(--ink); margin-bottom: 10px; }
+  .form-success p { font-size: 14px; color: var(--ink3); line-height: 1.7; }
+
+  /* ── CONTACT BAR ── */
+  .contact-bar { background: var(--g50); border-top: 1px solid var(--g200); border-bottom: 1px solid var(--g200); padding: 40px 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .contact-item { display: flex; align-items: center; gap: 16px; padding: 0 24px; border-right: 1px solid var(--g200); }
+  .contact-item:first-child { padding-left: 0; }
+  .contact-item:last-child { border-right: none; }
+  .contact-item-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--g100); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-item-icon i { font-size: 24px; color: var(--g700); }
+  .contact-item-label { font-size: 12px; color: var(--ink3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .contact-item-value { font-size: 16px; font-weight: 600; color: var(--ink); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--g900); color: rgba(255,255,255,0.6); padding: 72px 48px 36px; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 56px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 36px; }
+  .footer-brand .logo { color: var(--g300); margin-bottom: 16px; text-decoration: none; display: inline-flex; }
+  .footer-brand p { font-size: 14px; line-height: 1.75; max-width: 280px; }
+  .footer-social { display: flex; gap: 10px; margin-top: 24px; }
+  .social-btn { width: 38px; height: 38px; border-radius: 8px; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; transition: background 0.2s; text-decoration: none; }
+  .social-btn:hover { background: var(--g700); }
+  .social-btn i { font-size: 18px; color: rgba(255,255,255,0.6); }
+  .footer-col h4 { font-size: 13px; font-weight: 600; color: #fff; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--g300); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+  .footer-bottom-links { display: flex; gap: 24px; }
+  .footer-bottom-links a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-bottom-links a:hover { color: var(--g300); }
+
+  /* ── MOBILE MENU TOGGLE ── */
+  .menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--ink); }
+
+  @media (max-width: 1024px) {
+    nav { padding: 0 24px; }
+    .nav-links, .nav-phone { display: none; }
+    .menu-toggle { display: flex; }
+    section, .hero, .booking, footer { padding-left: 24px; padding-right: 24px; }
+    .stats-banner, .contact-bar { padding: 40px 24px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 100px; }
+    .hero-visual { display: none; }
+    .stats-banner { grid-template-columns: 1fr 1fr; gap: 32px 0; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .services-layout { grid-template-columns: 1fr; }
+    .services-list { grid-template-columns: 1fr 1fr; display: grid; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .why-layout, .booking-layout { grid-template-columns: 1fr; }
+    .pricing-grid, .reviews-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .contact-bar { grid-template-columns: 1fr; gap: 24px; }
+    .contact-item { border-right: none; padding: 0; }
+    .reviews-header { flex-direction: column; gap: 28px; align-items: flex-start; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="logo">
+    <div class="logo-icon"><i class="ti ti-sparkles"></i></div>
+    Verdant Clean
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#results">Before & After</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-phone"><i class="ti ti-phone"></i> +44 800 123 4567</div>
+    <button class="btn btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+  </div>
+  <button class="menu-toggle"><i class="ti ti-menu-2"></i></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-eyebrow"><i class="ti ti-award"></i> #1 Rated Cleaning Service</div>
+    <h1>A <em>cleaner home</em>,<br>a calmer life.</h1>
+    <p class="hero-desc">Professional, eco-conscious cleaning that transforms your space and gives you back your time. Vetted cleaners, guaranteed results, zero hassle.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary btn-large" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
+        <i class="ti ti-calendar-event"></i> Book a Clean
+      </button>
+      <button class="btn btn-secondary btn-large" onclick="document.getElementById('results').scrollIntoView({behavior:'smooth'})">
+        See Our Work
+      </button>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><i class="ti ti-shield-check"></i> Fully Insured</div>
+      <div class="trust-item"><i class="ti ti-leaf"></i> Eco Products</div>
+      <div class="trust-item"><i class="ti ti-refresh"></i> Satisfaction Guaranteed</div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-grid">
+      <div class="hero-card animate">
+        <div class="hero-card-top">
+          <div class="hero-card-icon"><i class="ti ti-home"></i></div>
+          <div>
+            <h4>Domestic Clean</h4>
+          </div>
+        </div>
+        <p>Weekly, fortnightly or one-off home cleans tailored to your routine.</p>
+      </div>
+      <div class="hero-card animate delay-1">
+        <div class="hero-card-top">
+          <div class="hero-card-icon"><i class="ti ti-zoom-in"></i></div>
+          <div><h4>Deep Clean</h4></div>
+        </div>
+        <p>Intensive, top-to-bottom cleaning for a complete reset of your space.</p>
+      </div>
+      <div class="hero-card animate delay-2">
+        <div class="hero-card-top">
+          <div class="hero-card-icon"><i class="ti ti-building"></i></div>
+          <div><h4>End of Tenancy</h4></div>
+        </div>
+        <p>Get your full deposit back with our landlord-approved clean and re-clean guarantee.</p>
+      </div>
+      <div class="hero-card animate delay-3">
+        <div class="hero-card-top">
+          <div class="hero-card-icon"><i class="ti ti-briefcase"></i></div>
+          <div><h4>Commercial</h4></div>
+        </div>
+        <p>Office and retail spaces kept pristine before, during, or after business hours.</p>
+      </div>
+      <div class="hero-card featured animate delay-4">
+        <div>
+          <div class="hero-card-top">
+            <div class="hero-card-icon"><i class="ti ti-star"></i></div>
+            <div><h4>Rated by 2,400+ customers</h4></div>
+          </div>
+          <p>Every cleaner is vetted, insured, and reviewed after every visit.</p>
+        </div>
+        <div class="rating-badge">
+          <div>
+            <div class="stars">★★★★★</div>
+            <div class="num">4.9</div>
+            <div class="label">out of 5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-banner">
+  <div class="stat-item animate">
+    <div class="stat-num">2,400<span style="font-size:28px;color:var(--g300)">+</span></div>
+    <div class="stat-label">Happy Customers</div>
+  </div>
+  <div class="stat-item animate delay-1">
+    <div class="stat-num">12<span style="font-size:28px;color:var(--g300)">yrs</span></div>
+    <div class="stat-label">In Business</div>
+  </div>
+  <div class="stat-item animate delay-2">
+    <div class="stat-num">98<span style="font-size:28px;color:var(--g300)">%</span></div>
+    <div class="stat-label">Rebooking Rate</div>
+  </div>
+  <div class="stat-item animate delay-3">
+    <div class="stat-num">100<span style="font-size:28px;color:var(--g300)">%</span></div>
+    <div class="stat-label">Satisfaction Guaranteed</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-layout">
+    <div>
+      <div class="section-tag">What We Offer</div>
+      <h2 class="section-title">Every clean, <strong>done right.</strong></h2>
+      <p class="section-sub">Six specialist services, one standard of excellence. Choose the clean that fits your life — we'll handle the rest.</p>
+      <div class="services-list" id="servicesList">
+        <div class="service-tab active" onclick="switchService(0)">
+          <div class="service-tab-left">
+            <div class="service-tab-icon"><i class="ti ti-home"></i></div>
+            <span class="service-tab-name">Regular Home Clean</span>
+          </div>
+          <i class="ti ti-chevron-right service-tab-arrow"></i>
+        </div>
+        <div class="service-tab" onclick="switchService(1)">
+          <div class="service-tab-left">
+            <div class="service-tab-icon"><i class="ti ti-zoom-in"></i></div>
+            <span class="service-tab-name">Deep Clean</span>
+          </div>
+          <i class="ti ti-chevron-right service-tab-arrow"></i>
+        </div>
+        <div class="service-tab" onclick="switchService(2)">
+          <div class="service-tab-left">
+            <div class="service-tab-icon"><i class="ti ti-building"></i></div>
+            <span class="service-tab-name">End of Tenancy</span>
+          </div>
+          <i class="ti ti-chevron-right service-tab-arrow"></i>
+        </div>
+        <div class="service-tab" onclick="switchService(3)">
+          <div class="service-tab-left">
+            <div class="service-tab-icon"><i class="ti ti-tools"></i></div>
+            <span class="service-tab-name">After Builders</span>
+          </div>
+          <i class="ti ti-chevron-right service-tab-arrow"></i>
+        </div>
+        <div class="service-tab" onclick="switchService(4)">
+          <div class="service-tab-left">
+            <div class="service-tab-icon"><i class="ti ti-briefcase"></i></div>
+            <span class="service-tab-name">Office & Commercial</span>
+          </div>
+          <i class="ti ti-chevron-right service-tab-arrow"></i>
+        </div>
+        <div class="service-tab" onclick="switchService(5)">
+          <div class="service-tab-left">
+            <div class="service-tab-icon"><i class="ti ti-sofa"></i></div>
+            <span class="service-tab-name">Carpet & Upholstery</span>
+          </div>
+          <i class="ti ti-chevron-right service-tab-arrow"></i>
+        </div>
+      </div>
+    </div>
+    <div id="serviceDetails">
+      <!-- Details injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE AFTER -->
+<section class="before-after" id="results">
+  <div class="section-header">
+    <div class="section-tag">Real Results</div>
+    <h2 class="section-title">The <strong>Verdant difference</strong>,<br>room by room.</h2>
+    <p class="section-sub">Drag the slider to reveal every transformation. No filters, no staging — just exceptional cleaning.</p>
+  </div>
+  <div class="ba-rooms">
+    <button class="ba-room-btn active" onclick="switchRoom(0,this)">Kitchen</button>
+    <button class="ba-room-btn" onclick="switchRoom(1,this)">Bathroom</button>
+    <button class="ba-room-btn" onclick="switchRoom(2,this)">Living Room</button>
+    <button class="ba-room-btn" onclick="switchRoom(3,this)">Bedroom</button>
+    <button class="ba-room-btn" onclick="switchRoom(4,this)">Office</button>
+  </div>
+  <div class="ba-container" id="baContainer">
+    <div class="ba-before-side ba-side" id="baBeforeSide">
+      <i class="ti ti-home-off" style="font-size:64px;color:rgba(0,0,0,0.2)"></i>
+      <div class="ba-room-title" id="baBeforeTitle">Before</div>
+      <div class="ba-room-desc" id="baBeforeDesc">Greasy stovetop · Cluttered counters · Stained sink</div>
+    </div>
+    <div class="ba-clip-layer" id="baClipLayer" style="width:50%">
+      <div class="ba-after-side ba-side" style="width:920px" id="baAfterSide">
+        <i class="ti ti-home-check" style="font-size:64px;color:rgba(26,61,26,0.3)"></i>
+        <div class="ba-room-title" id="baAfterTitle">After</div>
+        <div class="ba-room-desc" id="baAfterDesc">Spotless surfaces · Degreased oven · Gleaming taps</div>
+      </div>
+    </div>
+    <div class="ba-divider" id="baDivider" style="left:50%">
+      <div class="ba-knob"><i class="ti ti-arrows-left-right"></i></div>
+    </div>
+    <div class="ba-side-label ba-before-label">Before</div>
+    <div class="ba-side-label ba-after-label">After</div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-header">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title">Clean in <strong>four steps.</strong></h2>
+    <p class="section-sub">We've stripped away every bit of friction. From booking to a sparkling home takes under two minutes of your time.</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step animate">
+      <div class="process-step-num">01</div>
+      <div class="process-step-icon"><i class="ti ti-device-mobile"></i></div>
+      <h3>Book Online</h3>
+      <p>Choose your service, preferred date, and time in seconds. No phone calls. Instant confirmation to your inbox.</p>
+      <div class="process-connector" style="right:-14px"><i class="ti ti-arrow-right"></i></div>
+    </div>
+    <div class="process-step animate delay-1">
+      <div class="process-step-num">02</div>
+      <div class="process-step-icon"><i class="ti ti-user-check"></i></div>
+      <h3>Meet Your Cleaner</h3>
+      <p>A vetted, insured professional arrives at your door — fully equipped with eco-friendly supplies and your checklist.</p>
+      <div class="process-connector" style="right:-14px"><i class="ti ti-arrow-right"></i></div>
+    </div>
+    <div class="process-step animate delay-2">
+      <div class="process-step-num">03</div>
+      <div class="process-step-icon"><i class="ti ti-sparkles"></i></div>
+      <h3>We Clean</h3>
+      <p>Thorough, systematic cleaning to our 65-point checklist. We don't cut corners — literally or figuratively.</p>
+      <div class="process-connector" style="right:-14px"><i class="ti ti-arrow-right"></i></div>
+    </div>
+    <div class="process-step animate delay-3">
+      <div class="process-step-num">04</div>
+      <div class="process-step-icon"><i class="ti ti-heart"></i></div>
+      <h3>Enjoy & Rebook</h3>
+      <p>Walk into a spotless home. Rate your clean, leave a tip, and rebook with one tap. It's that simple.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us" id="why">
+  <div class="why-layout">
+    <div>
+      <div class="section-tag">Why Verdant Clean</div>
+      <h2 class="section-title">Cleaning you can <strong>trust.</strong></h2>
+      <p class="section-sub">We obsess over the details so you don't have to. Here's what sets us apart from the rest.</p>
+      <ul class="why-list">
+        <li class="why-list-item animate">
+          <div class="why-list-icon"><i class="ti ti-shield-lock"></i></div>
+          <div class="why-list-text">
+            <h5>Fully vetted & DBS checked</h5>
+            <p>Every cleaner undergoes rigorous background checks, references, and training before their first booking.</p>
+          </div>
+        </li>
+        <li class="why-list-item animate delay-1">
+          <div class="why-list-icon"><i class="ti ti-leaf"></i></div>
+          <div class="why-list-text">
+            <h5>Eco-friendly products</h5>
+            <p>We use biodegradable, non-toxic cleaning products. Safe for children, pets, and the planet.</p>
+          </div>
+        </li>
+        <li class="why-list-item animate delay-2">
+          <div class="why-list-icon"><i class="ti ti-refresh"></i></div>
+          <div class="why-list-text">
+            <h5>Satisfaction guarantee</h5>
+            <p>Not happy? We'll come back within 48 hours and re-clean for free. No quibbles, no hassle.</p>
+          </div>
+        </li>
+        <li class="why-list-item animate delay-3">
+          <div class="why-list-icon"><i class="ti ti-lock"></i></div>
+          <div class="why-list-text">
+            <h5>£5m public liability insurance</h5>
+            <p>Fully insured so you have complete peace of mind should anything unexpected ever happen.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-visual animate">
+      <div class="why-card green">
+        <i class="ti ti-award"></i>
+        <h4>12 Years of Excellence</h4>
+        <p>Over a decade trusted by families and businesses across the UK.</p>
+      </div>
+      <div class="why-card light">
+        <i class="ti ti-clock"></i>
+        <h4>Same-Day Booking</h4>
+        <p>Need a clean today? We often have slots available within hours.</p>
+      </div>
+      <div class="why-card white">
+        <i class="ti ti-repeat"></i>
+        <h4>Consistent Cleaner</h4>
+        <p>We match you with one dedicated cleaner who learns your preferences.</p>
+      </div>
+      <div class="why-card dark">
+        <i class="ti ti-device-mobile"></i>
+        <h4>Manage Online</h4>
+        <p>Book, reschedule, pay, and message your cleaner — all in one place.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-header centered">
+    <div class="section-tag">Transparent Pricing</div>
+    <h2 class="section-title">Simple, honest <strong>pricing.</strong></h2>
+    <p class="section-sub">No hidden fees. No nasty surprises. Just fair prices for exceptional cleaning.</p>
+  </div>
+  <div class="pricing-toggle">
+    <button class="toggle-opt active" onclick="setPricing('one-off',this)">One-Off</button>
+    <button class="toggle-opt" onclick="setPricing('weekly',this)">Weekly (save 20%)</button>
+    <button class="toggle-opt" onclick="setPricing('fortnightly',this)">Fortnightly (save 10%)</button>
+  </div>
+  <div class="pricing-grid" id="pricingGrid">
+    <!-- Injected by JS -->
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-header">
+    <div>
+      <div class="section-tag">Customer Reviews</div>
+      <h2 class="section-title">Trusted by <strong>thousands.</strong></h2>
+    </div>
+    <div class="rating-summary">
+      <div class="big-rating">4.9</div>
+      <div class="rating-details">
+        <div class="stars-row">★★★★★</div>
+        <p>Based on 2,416 reviews</p>
+        <div class="rating-bars" style="margin-top:8px">
+          <div class="rating-bar-row">5★ <div class="bar-track"><div class="bar-fill" style="width:91%"></div></div> 91%</div>
+          <div class="rating-bar-row">4★ <div class="bar-track"><div class="bar-fill" style="width:7%"></div></div> 7%</div>
+          <div class="rating-bar-row">3★ <div class="bar-track"><div class="bar-fill" style="width:2%"></div></div> 2%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card animate">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Absolutely incredible deep clean. My kitchen looks better than the day we moved in. The oven was disgusting and now it's spotless. Worth every penny."</p>
+      <div class="review-author">
+        <div class="review-avatar">SR</div>
+        <div>
+          <div class="review-name">Sarah Richardson</div>
+          <div class="review-meta">Deep Clean · London · 2 weeks ago</div>
+          <div class="review-verified"><i class="ti ti-circle-check"></i> Verified customer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card animate delay-1">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Used Verdant Clean for our end of tenancy. Got our full deposit back — landlord was actually impressed. The re-clean guarantee gave us complete peace of mind."</p>
+      <div class="review-author">
+        <div class="review-avatar">JM</div>
+        <div>
+          <div class="review-name">James Mitchell</div>
+          <div class="review-meta">End of Tenancy · Manchester · 1 month ago</div>
+          <div class="review-verified"><i class="ti ti-circle-check"></i> Verified customer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card animate delay-2">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Been using the fortnightly service for 8 months. Our cleaner is consistent, thorough, and always on time. She knows exactly what we need without being told."</p>
+      <div class="review-author">
+        <div class="review-avatar">AP</div>
+        <div>
+          <div class="review-name">Aisha Patel</div>
+          <div class="review-meta">Regular Clean · Birmingham · 3 weeks ago</div>
+          <div class="review-verified"><i class="ti ti-circle-check"></i> Verified customer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card animate">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Booked the same-day clean for a last-minute inspection. They arrived on time, the team was brilliant, and the place was immaculate. Saved my life honestly."</p>
+      <div class="review-author">
+        <div class="review-avatar">TW</div>
+        <div>
+          <div class="review-name">Tom Whitfield</div>
+          <div class="review-meta">Deep Clean · Bristol · 1 week ago</div>
+          <div class="review-verified"><i class="ti ti-circle-check"></i> Verified customer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card animate delay-1">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The office clean is phenomenal. Our team of 40 always comes in to a perfectly fresh workspace. Productivity noticeably up since we started — I'm not even joking."</p>
+      <div class="review-author">
+        <div class="review-avatar">CL</div>
+        <div>
+          <div class="review-name">Charlotte Lee</div>
+          <div class="review-meta">Office Clean · Leeds · 2 months ago</div>
+          <div class="review-verified"><i class="ti ti-circle-check"></i> Verified customer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card animate delay-2">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I have two dogs and was nervous about the eco-products claim but they genuinely use pet-safe products. The carpet clean removed stains I thought were permanent."</p>
+      <div class="review-author">
+        <div class="review-avatar">NK</div>
+        <div>
+          <div class="review-name">Natalie Khan</div>
+          <div class="review-meta">Carpet Clean · Edinburgh · 3 weeks ago</div>
+          <div class="review-verified"><i class="ti ti-circle-check"></i> Verified customer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-header">
+    <div class="section-tag">Our Work</div>
+    <h2 class="section-title">Every room, <strong>transformed.</strong></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item tall animate">
+      <div class="gallery-inner">
+        <i class="ti ti-tools gallery-room-icon"></i>
+        <span class="gallery-room-label">Kitchen Deep Clean</span>
+      </div>
+      <div class="gallery-overlay"><span>Kitchen Deep Clean</span></div>
+    </div>
+    <div class="gallery-item animate delay-1">
+      <div class="gallery-inner">
+        <i class="ti ti-bath gallery-room-icon"></i>
+        <span class="gallery-room-label">Bathroom Restoration</span>
+      </div>
+      <div class="gallery-overlay"><span>Bathroom Restoration</span></div>
+    </div>
+    <div class="gallery-item animate delay-2">
+      <div class="gallery-inner">
+        <i class="ti ti-sofa gallery-room-icon"></i>
+        <span class="gallery-room-label">Upholstery Clean</span>
+      </div>
+      <div class="gallery-overlay"><span>Upholstery Clean</span></div>
+    </div>
+    <div class="gallery-item wide animate delay-1">
+      <div class="gallery-inner">
+        <i class="ti ti-building gallery-room-icon"></i>
+        <span class="gallery-room-label">Office & Commercial</span>
+      </div>
+      <div class="gallery-overlay"><span>Office & Commercial</span></div>
+    </div>
+    <div class="gallery-item animate delay-3">
+      <div class="gallery-inner">
+        <i class="ti ti-home gallery-room-icon"></i>
+        <span class="gallery-room-label">End of Tenancy</span>
+      </div>
+      <div class="gallery-overlay"><span>End of Tenancy</span></div>
+    </div>
+    <div class="gallery-item animate delay-4">
+      <div class="gallery-inner">
+        <i class="ti ti-bed gallery-room-icon"></i>
+        <span class="gallery-room-label">Bedroom Refresh</span>
+      </div>
+      <div class="gallery-overlay"><span>Bedroom Refresh</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-header">
+    <div class="section-tag">FAQ</div>
+    <h2 class="section-title">Questions <strong>answered.</strong></h2>
+    <p class="section-sub">Everything you need to know before booking your first clean.</p>
+  </div>
+  <div class="faq-grid" id="faqGrid">
+    <!-- Injected by JS -->
+  </div>
+</section>
+
+<!-- CONTACT BAR -->
+<div class="contact-bar">
+  <div class="contact-item">
+    <div class="contact-item-icon"><i class="ti ti-phone"></i></div>
+    <div>
+      <div class="contact-item-label">Call Us</div>
+      <div class="contact-item-value">+44 800 123 4567</div>
+    </div>
+  </div>
+  <div class="contact-item">
+    <div class="contact-item-icon"><i class="ti ti-mail"></i></div>
+    <div>
+      <div class="contact-item-label">Email Us</div>
+      <div class="contact-item-value">hello@verdantclean.co.uk</div>
+    </div>
+  </div>
+  <div class="contact-item">
+    <div class="contact-item-icon"><i class="ti ti-clock"></i></div>
+    <div>
+      <div class="contact-item-label">Working Hours</div>
+      <div class="contact-item-value">Mon – Sun, 7am – 9pm</div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="booking-layout">
+    <div class="booking-info">
+      <div class="section-tag">Book a Clean</div>
+      <h2 class="section-title">Ready for a <strong>spotless home?</strong></h2>
+      <p class="section-sub">Fill in the form and we'll confirm your appointment within the hour. No hidden fees, no surprises.</p>
+      <div class="booking-perks">
+        <div class="booking-perk">
+          <div class="perk-icon"><i class="ti ti-calendar-event"></i></div>
+          <div class="perk-text"><h5>Instant confirmation</h5><p>Booking confirmed by email within minutes</p></div>
+        </div>
+        <div class="booking-perk">
+          <div class="perk-icon"><i class="ti ti-x"></i></div>
+          <div class="perk-text"><h5>Free cancellation</h5><p>Cancel or reschedule up to 24 hours before, free of charge</p></div>
+        </div>
+        <div class="booking-perk">
+          <div class="perk-icon"><i class="ti ti-refresh"></i></div>
+          <div class="perk-text"><h5>Re-clean guarantee</h5><p>Not satisfied? We return within 48 hours at no extra cost</p></div>
+        </div>
+        <div class="booking-perk">
+          <div class="perk-icon"><i class="ti ti-shield-check"></i></div>
+          <div class="perk-text"><h5>Fully insured</h5><p>£5 million public liability insurance on every clean</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="booking-form-card">
+      <div id="bookingFormWrap">
+        <h3>Request Your Booking</h3>
+        <form id="bookingForm" onsubmit="submitBooking(event)">
+          <div class="form-grid">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane" required></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
+            <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@email.com" required></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+44 7700 000000"></div>
+            <div class="form-group full"><label>Service Type</label>
+              <select required>
+                <option value="">Choose a service…</option>
+                <option>Regular Home Clean</option>
+                <option>Deep Clean</option>
+                <option>End of Tenancy</option>
+                <option>After Builders Clean</option>
+                <option>Office & Commercial</option>
+                <option>Carpet & Upholstery</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Preferred Date</label><input type="date" required></div>
+            <div class="form-group"><label>Preferred Time</label>
+              <select>
+                <option>Morning (7am – 12pm)</option>
+                <option>Afternoon (12pm – 5pm)</option>
+                <option>Evening (5pm – 9pm)</option>
+              </select>
+            </div>
+            <div class="form-group full"><label>Property Type</label>
+              <select>
+                <option>Studio flat</option>
+                <option>1-bed flat</option>
+                <option>2-bed flat</option>
+                <option>3-bed house</option>
+                <option>4-bed house</option>
+                <option>5+ bed house</option>
+                <option>Commercial / Office</option>
+              </select>
+            </div>
+            <div class="form-group full"><label>Additional Notes</label><textarea placeholder="Pets, entry instructions, areas to focus on, specific products to avoid…"></textarea></div>
+          </div>
+          <button type="submit" class="form-submit"><i class="ti ti-calendar-event"></i> Confirm Booking Request</button>
+        </form>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <i class="ti ti-circle-check"></i>
+        <h4>Booking received!</h4>
+        <p>Thank you — we'll confirm your appointment by email within the hour. We look forward to transforming your space.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo footer-brand-logo">
+        <div class="logo-icon" style="background:var(--g700)"><i class="ti ti-sparkles"></i></div>
+        <span style="color:var(--g300)">Verdant Clean</span>
+      </a>
+      <p>Professional, eco-conscious cleaning services for homes and businesses across the UK. Trusted since 2012.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" class="social-btn"><i class="ti ti-brand-facebook"></i></a>
+        <a href="#" class="social-btn"><i class="ti ti-brand-twitter"></i></a>
+        <a href="#" class="social-btn"><i class="ti ti-brand-linkedin"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Regular Home Clean</a></li>
+        <li><a href="#">Deep Clean</a></li>
+        <li><a href="#">End of Tenancy</a></li>
+        <li><a href="#">After Builders</a></li>
+        <li><a href="#">Office & Commercial</a></li>
+        <li><a href="#">Carpet & Upholstery</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press & Media</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Refer a Friend</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help Centre</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Cancellation Policy</a></li>
+        <li><a href="#">Insurance Info</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Verdant Clean Ltd. All rights reserved. Registered in England & Wales.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Settings</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── SERVICES DATA ──
+const services = [
+  {
+    icon: 'ti-home', title: 'Regular Home Clean',
+    img: 'ti-home', badge: 'Most Popular',
+    desc: 'Our flagship service — a thorough, consistent clean on a schedule that works for you. Your dedicated cleaner follows a personalised checklist so every visit meets your standards.',
+    checks: ['All rooms dusted, vacuumed, and mopped','Kitchen surfaces, hob, and sink cleaned','Bathrooms scrubbed and sanitised','Bins emptied and replaced','Bed linen changed (on request)','Customisable checklist per visit'],
+    from: '£60', unit: '/ visit'
+  },
+  {
+    icon: 'ti-zoom-in', title: 'Deep Clean',
+    img: 'ti-zoom-in', badge: 'Top Rated',
+    desc: 'A top-to-bottom intensive clean that reaches every corner, crevice, and hidden surface. Perfect for a seasonal reset, moving in, or when you need a genuine fresh start.',
+    checks: ['Inside oven, fridge and dishwasher','Behind and under all furniture','Inside cupboards and drawers','Limescale removal from tiles and taps','Skirting boards, light switches, door handles','Window tracks and sills cleaned'],
+    from: '£120', unit: '/ session'
+  },
+  {
+    icon: 'ti-building', title: 'End of Tenancy',
+    img: 'ti-building', badge: 'Deposit Guarantee',
+    desc: 'Get your full deposit back with our landlord-approved end of tenancy clean. We follow the industry-standard checklist and offer a free re-clean within 72 hours if required.',
+    checks: ['Full inventory checklist completed','Inside all appliances cleaned','Walls spot-cleaned','Carpets steam-cleaned (add-on)','Free re-clean within 72 hours','Certificate of cleaning issued'],
+    from: '£150', unit: '/ property'
+  },
+  {
+    icon: 'ti-tools', title: 'After Builders Clean',
+    img: 'ti-tools', badge: 'Specialist Clean',
+    desc: 'Renovation dust and construction residue require specialist attention. Our team removes plaster dust, paint overspray, adhesive residue and building debris to reveal your new space.',
+    checks: ['Fine dust removal from all surfaces','Paint and adhesive residue cleaned','Window and frame cleaning','New appliance labels and film removed','Waste and packaging removal','Final polish and inspection'],
+    from: '£180', unit: '/ project'
+  },
+  {
+    icon: 'ti-briefcase', title: 'Office & Commercial',
+    img: 'ti-briefcase', badge: 'Business Clean',
+    desc: 'A professionally clean workspace improves productivity, morale, and the impression you make on clients. We clean before or after hours, without disruption to your team.',
+    checks: ['Desks, screens, keyboards sanitised','Kitchen and break room cleaned','Toilets and bathrooms deep-cleaned','Reception and client areas polished','Bins and recycling sorted','Tailored schedule around your hours'],
+    from: '£80', unit: '/ session'
+  },
+  {
+    icon: 'ti-sofa', title: 'Carpet & Upholstery',
+    img: 'ti-sofa', badge: 'Specialist Steam',
+    desc: 'Professional steam and dry cleaning extracts deep-set dirt, allergens, and odours from carpets, rugs, sofas, armchairs, and fabric furnishings. Results that last.',
+    checks: ['Hot water extraction (steam) cleaning','Stain pre-treatment and removal','Pet hair and allergen extraction','Odour neutralisation treatment','Fabric protection spray (optional)','Fast drying — typically 2–4 hours'],
+    from: '£40', unit: '/ room'
+  }
+];
+
+function switchService(i) {
+  document.querySelectorAll('.service-tab').forEach((t,idx) => t.classList.toggle('active', idx === i));
+  const s = services[i];
+  document.getElementById('serviceDetails').innerHTML = `
+    <div class="service-detail active">
+      <div class="service-detail-img">
+        <i class="ti ${s.img} big-icon"></i>
+        <div class="detail-badge">${s.badge}</div>
+      </div>
+ 
